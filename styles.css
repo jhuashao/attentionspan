@@ -66,7 +66,7 @@ body {
 
 #timer {
     font-family: Druk;
-    font-size: 50vw;
+    font-size: 100vw;
     display: flex;
     align-items: center;
     /* justify-content: center; */
