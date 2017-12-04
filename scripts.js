@@ -1,4 +1,3 @@
-
 //counter
 var count = 505;
 
