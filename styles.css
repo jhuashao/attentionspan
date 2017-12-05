@@ -7,6 +7,11 @@
     font-family: 'Space Mono', monospace;
 }
 
+.spacemonotext {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -15,40 +20,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:0px;
 }
 
 #container {
-    width: 90vw;
-    height: 90vh;
-    padding: 20px;
-    position: absolute;
-    z-index: 1;
+    width: 90%;
+    height: 90%;
+    /* padding: 20px; */
+    display: grid;
+    grid-template-columns: 25%;
 }
 
 #nav {
-    height: 250px;
-    width: 110px;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 10px 50px;
 }
 
 #pause {
-    width: 100px;
-    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid;
-    border-width: 1px;
-    margin-bottom: 20px;
+    border-width: 0.1px;
 }
 
 #about {
-    width: 100px;
-    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid;
-    border-width: 1px;
+    border-width: 0.1px;
+}
+
+#description {
+    display: flex;
+    align-self: flex-end;
 }
 
 #timercontainer {
@@ -66,12 +75,12 @@ body {
 
 #timer {
     font-family: Druk;
-    font-size: 100vw;
+    font-size: 60vw;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     width: 100%;
     height: 100%;
     text-align: left;
-    transform: translateX(25%);
+    transform: translateX(27%);
 }
