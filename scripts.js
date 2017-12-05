@@ -1,5 +1,5 @@
 //counter
-var count = 500;
+var count = 100;
 
 var counter = setInterval(timer, 10); //10 will  run it every 100th of a second
 
@@ -10,6 +10,7 @@ function timer() {
     if (count <= 0) {
         clearInterval(counter);
         playGif();
+        hideTimer();
         return;
     }
     count--;
@@ -17,10 +18,16 @@ function timer() {
 }
 
 function playGif() {
-    display = 'body';
-    $(display).css('background', 'url(https://media.giphy.com/media/3ov9jJGropK0I8QmWY/giphy.gif) repeat left center fixed');
+    display = '#gif';
+
+    $(display).css('background', 'url("https://media.giphy.com/media/3ov9jJGropK0I8QmWY/giphy.gif")');
+
+    $(display).css('background-size', 'cover');
 }
 
+function hideTimer() {
+    $('#timer').css('visibility', 'hidden');
+}
 
 //giphy
 var xhr = $.get('http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=5');
