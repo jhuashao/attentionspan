@@ -1,36 +1,59 @@
-// $(document).ready(function () {
-//     $('gif').mousemove(function () {
-//         setInterval(timer, 10);
-//     });
-// });
-
-
 var count = 500;
-
-var counter = setInterval(timer, 10); //10 will  run it every 100th of a second
+//10 will  run it every 100th of a second
 
 var display = '';
 
 var trendingGif = '';
 
+var intervals = [];
+
+intervals.push(setInterval(timer, 10));
+
+$(document).ready(function () {
+    $('body').mousemove(function () {
+        count = 499;
+        hideGIF();
+        //calls clearInterval for each of the IDs inside the intervals array
+        intervals.forEach(function(interval){clearInterval(interval)})
+        //declared empty because all the ids are still inside the array
+        intervals = [];
+        //setting the interval into the array
+        intervals.push(setInterval(timer, 10));
+        showTimer();
+        document.getElementById("timer").innerHTML = count / 100;
+    });
+});
+
 //TIMER
 function timer() {
-    if (count <= 0) {
-        clearInterval(counter);
+        if (count <= 0) {
+            hideTimer();
+            showGIF();
+            return;
+        } else {
+            count--;
+            // console.log(count);
+            document.getElementById("timer").innerHTML = count / 100;
+        }
+    }
 
-        playGif();
 
-        hideTimer();
-        return;
-    } 
-    count--;
-    document.getElementById("timer").innerHTML = count / 100;
-}
-
-
-//play gif function
 function hideTimer() {
     $('#timer').css('visibility', 'hidden');
+}
+
+function hideGIF(){
+    $('#gif').css('visibility', 'hidden');
+    $('#gifURL').css('visibility', 'hidden');
+}
+
+function showGIF(){
+    $('#gif').css('visibility', 'visible');
+    $('#gifURL').css('visibility', 'visible');
+}
+
+function showTimer() {
+    $('#timer').css('visibility', 'visible');
 }
 
 
@@ -40,20 +63,32 @@ var xhr = $.get('https://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4Y
 function playGif() {
     xhr.done(function (data) {
         console.log('success got data', data.data[0].images.original.url);
+        
         var i = 0;
         var interval = setInterval(function () {
-            if (i == 100000) clearInterval(interval);
+            if (i == 100000) clearInterval(interval);      
             i++;
+
             var trendingGif = data.data[i].images.original.url;
-            window.trendingGif = trendingGif;
+            // window.trendingGif = trendingGif;
+            
+            console.log(i);
+
             display = '#gif';
             $(display).css('background', 'url(' + trendingGif + ')');
             $(display).css('background-size', 'cover');
             document.getElementById("gifURL").innerHTML = data.data[i].images.original.url;
-            console.log(data.data[i].images.original.url);
+            // console.log(data.data[i].images.original.url);
         }, 250);
     });
 };
+
+$( document ).ready(function() {
+   hideGIF();
+});
+
+playGif();
+
 
 
 // $( document ).ready(function() {
