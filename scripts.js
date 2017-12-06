@@ -1,11 +1,11 @@
-$(document).ready(function () {
-    $('#aboutbutton').click(function () {
-        $('#about').css('transform', 'translateX(38%)');
-    });
-});
+// $(document).ready(function () {
+//     $('gif').mousemove(function () {
+//         setInterval(timer, 10);
+//     });
+// });
 
 
-var count = 100;
+var count = 500;
 
 var counter = setInterval(timer, 10); //10 will  run it every 100th of a second
 
@@ -35,14 +35,14 @@ function hideTimer() {
 
 
 //GIPHY TRENDING
-var xhr = $.get('https://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=1000000000');
+var xhr = $.get('https://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=100000');
 
 function playGif() {
     xhr.done(function (data) {
         console.log('success got data', data.data[0].images.original.url);
         var i = 0;
         var interval = setInterval(function () {
-            if (i == 1000000000) clearInterval(interval);
+            if (i == 1000000) clearInterval(interval);
             i++;
             var trendingGif = data.data[i].images.original.url;
             window.trendingGif = trendingGif;
