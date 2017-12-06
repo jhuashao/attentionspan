@@ -1,15 +1,18 @@
-//counter
-var count = 100;
+var count = 500;
 
 var counter = setInterval(timer, 10); //10 will  run it every 100th of a second
 
 var display = '';
 
+var trendingGif = '';
 
+//TIMER
 function timer() {
     if (count <= 0) {
         clearInterval(counter);
+
         playGif();
+        
         hideTimer();
         return;
     }
@@ -17,25 +20,67 @@ function timer() {
     document.getElementById("timer").innerHTML = count / 100;
 }
 
-function playGif() {
-    display = '#gif';
 
-    $(display).css('background', 'url("https://media.giphy.com/media/3ov9jJGropK0I8QmWY/giphy.gif")');
-
-    $(display).css('background-size', 'cover');
-}
-
+//play gif function
 function hideTimer() {
     $('#timer').css('visibility', 'hidden');
 }
 
+
+//GIPHY TRENDING
+var xhr = $.get('http://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=10000');
+
+function playGif() {
+        xhr.done(function (data) {
+            console.log('success got data', data.data[0].images.original.url);
+            var i = 0;
+            var interval = setInterval(function () {
+                if (i == 10000) clearInterval(interval);
+                i++;
+                    var trendingGif = data.data[i].images.original.url;
+                    window.trendingGif = trendingGif;
+                    display = '#gif';
+                    $(display).css('background', 'url(' + trendingGif + ')');
+                    $(display).css('background-size', 'cover');
+            }, 200);
+        });
+    };
+
+
+// $( document ).ready(function() {
+//     console.log( "ready!" );
+// });
+
+//GIF ARRAY COUNTER
+// function gifCounter() {
+
+//     var interval = setInterval(countUp, 500);
+
+//     function countUp() {
+//         if (i == 100) {
+//             clearInterval;
+//             return;
+//         }
+//         i++
+//         console.log(i);
+//     }
+
+// }
+
+
+
+
+
 //giphy
-var xhr = $.get('http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=5');
-xhr.done(function (data) {
-    console.log('success got data', data);
-});
 
 
+
+//API JSON LINK TO TRENDING
+//'http://api.giphy.com/v1/gifs/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=5'
+
+// var giphyURL = 'http://api.giphy.com/v1/gifs/trending?'
+// var apiKey = '&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn'
+// var gifLimit = '&limit=5'
 
 
 
