@@ -52,7 +52,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 25% 45% 25%;
+    grid-template-rows: 25% 50% 25%;
     margin: 20px;
 }
 
@@ -109,7 +109,7 @@ body {
 
 #timer {
     font-family: Druk;
-    font-size: 700px;
+    font-size: 125vh;
     display: flex;
     align-items: center;
     /* justify-content: center; */

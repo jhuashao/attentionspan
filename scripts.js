@@ -22,7 +22,7 @@ function timer() {
 
         hideTimer();
         return;
-    }
+    } 
     count--;
     document.getElementById("timer").innerHTML = count / 100;
 }
@@ -42,7 +42,7 @@ function playGif() {
         console.log('success got data', data.data[0].images.original.url);
         var i = 0;
         var interval = setInterval(function () {
-            if (i == 1000000) clearInterval(interval);
+            if (i == 100000) clearInterval(interval);
             i++;
             var trendingGif = data.data[i].images.original.url;
             window.trendingGif = trendingGif;
