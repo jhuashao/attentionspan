@@ -28,7 +28,7 @@ function hideTimer() {
 
 
 //GIPHY TRENDING
-var xhr = $.get('http://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=10000');
+var xhr = $.get('https://api.giphy.com/v1/stickers/trending?&api_key=4yRanWsUp4YQqDowgBx06zumbhVZSZCn&limit=10000');
 
 function playGif() {
         xhr.done(function (data) {
