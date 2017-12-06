@@ -41,8 +41,8 @@ function playGif() {
                     window.trendingGif = trendingGif;
                     display = '#gif';
                     $(display).css('background', 'url(' + trendingGif + ')');
-                    $(display).css('background-size', 'cover');
-            }, 200);
+                    // $(display).css('background-size', 'center');
+            }, 100);
         });
     };
 
